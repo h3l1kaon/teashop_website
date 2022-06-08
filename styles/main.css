@@ -388,6 +388,9 @@ body > main:nth-child(3) > div:nth-child(1) {
   height: 250px;
   position: relative;
 }
+#about_img:hover {
+  background-size: 120%;
+}
 #about_img:hover #img_overlay {
   position: absolute;
   top: 0;
