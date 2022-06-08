@@ -24,6 +24,7 @@
 }
 
 header {
+  overflow-x: hidden;
   background-image: url("../image/main-bcg.jpeg");
   height: 650px;
   width: 100%;
