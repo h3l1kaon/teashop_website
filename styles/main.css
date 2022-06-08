@@ -29,6 +29,8 @@ header {
   width: 100%;
   object-fit: cover;
   background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -63,7 +65,7 @@ header {
   }
 }
 #burger_menu {
-  position: absolute;
+  position: fixed;
   top: 35px;
   left: 15px;
   width: 50px;
@@ -78,27 +80,31 @@ header {
   animation: menuAnimation 1s infinite;
 }
 #burger_menu:hover {
-  color: #000;
+  color: #9ec762;
 }
 
 header > input {
   display: none;
 }
+
 header > nav {
+  position: fixed;
+  z-index: 11;
+  background-color: var(--grey_1);
+  width: 100%;
+  height: 100%;
   transition: transform 0.3s linear;
   transform: translateX(-100%);
+  left: 0;
+  top: 0;
 }
 /* faire apparaitre/disparaitre la nav lorsqu'on clique sur le menu */
 header > input[type="checkbox"]:checked ~ nav {
   transform: translateX(0%);
 }
-/* faire disparaître le button lorsqu'on ouvre la nav */
-header > input[type="checkbox"]:checked ~ label[for="menu"] > #burger_menu {
-  visibility: hidden;
-  opacity: 0;
-}
+
 #close_menu {
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 30px;
   font-size: 40px;
@@ -108,6 +114,16 @@ header > input[type="checkbox"]:checked ~ label[for="menu"] > #burger_menu {
 #close_menu:hover {
   color: #000;
 }
+nav > div {
+  width: 100%;
+  height: 100%;
+}
+label[for="menu"] {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 50px;
+}
 header
   > input[type="checkbox"]:checked
   ~ label[for="menu"]
@@ -116,56 +132,50 @@ header
 }
 /* show close */
 
-/* style nav */
-header > nav {
-  position: absolute;
-  z-index: 3;
-  background-color: var(--grey_1);
-  width: 100%;
-  height: 100%;
-}
-header > nav > ul {
+header > nav > div > ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 120px 0 0 20px;
-  height: 400px;
+  padding: 70px 0 0 40px;
+  /* height: 80%; */
   justify-content: space-around;
   font-family: Catamaran;
 }
-header > nav > ul > li {
+header > nav > div > ul > li {
   width: 60%;
   border: 1px transparent solid;
   padding: 10px 5px;
   margin: 3px;
   transition: padding 0.1s linear;
 }
-header > nav > ul > li:hover {
+header > nav > div > ul > li:hover {
   border-bottom-color: #000;
   border-top-color: #000;
   cursor: pointer;
   padding-left: 10px;
 }
-header > nav > ul > li > a {
+header > nav > div > ul > li > a {
   text-decoration: none;
   color: var(--menu_font);
-  font-size: 35px;
+  font-size: 20px;
   text-transform: uppercase;
 }
-header > nav > ul > li:hover a {
+header > nav > div > ul > li:hover a {
   color: #000;
 }
 
 /* tablet */
 @media (min-width: 600px) {
   header > nav {
-    width: 30%;
-    left: 0;
+    width: 40%;
   }
   #burger_menu {
     top: 50px;
     left: 60px;
+  }
+  header > nav > div > ul > li > a {
+    font-size: 35px;
   }
 }
 
@@ -182,8 +192,9 @@ header > nav > ul > li:hover a {
   text-transform: uppercase;
   line-height: 50px;
   letter-spacing: 3px;
+  animation: slideLeft 2s ease-in 0s 1 normal forwards;
 }
-#header_text > h1 > span {
+#header_text > span {
   color: var(--green_2);
   font-family: Grand_Hotel;
   font-weight: 100;
@@ -193,6 +204,7 @@ header > nav > ul > li:hover a {
   padding-bottom: 20px;
   letter-spacing: 2px;
   line-height: normal;
+  animation: slideRight 2s ease-in 0s 1 normal forwards;
 }
 #header_text button {
   margin-top: 25px;
@@ -205,6 +217,7 @@ header > nav > ul > li:hover a {
   text-transform: uppercase;
   letter-spacing: 3px;
   cursor: pointer;
+  animation: fadeIn 2s ease-in 0s 1 normal forwards;
 }
 #header_text button:hover {
   border-color: #466129;
@@ -218,6 +231,48 @@ header > nav > ul > li:hover a {
   background-color: var(--green_2);
 }
 
+/* animations header */
+.fade_in {
+  opacity: 0;
+  /* animation: fadeIn 2s ease-in 0s 1 normal forwards; */
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideRight {
+  0% {
+    /* left: 0; */
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  70% {
+    transform: translateX(30%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideLeft {
+  0% {
+    /* left: 0; */
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  70% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 /* desktop */
 @media (min-width: 1240px) {
   #header_text {
@@ -229,7 +284,7 @@ header > nav > ul > li:hover a {
     font-size: 60px;
     line-height: 60px;
   }
-  #header_text > h1 > span {
+  #header_text > span {
     font-size: 50px;
   }
 }
@@ -264,6 +319,13 @@ body > main:nth-child(3) > div:nth-child(1) {
   justify-content: center;
   text-align: center;
   padding: 50px 30px;
+  border-top: 3px solid transparent;
+  cursor: pointer;
+}
+.icon_wrapper:hover {
+  background-color: #fff;
+  border-top: none;
+  border-bottom: 3px solid var(--green_1);
 }
 .icon_wrapper h4 {
   padding: 20px 0;
@@ -310,12 +372,28 @@ body > main:nth-child(3) > div:nth-child(1) {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 70px 25px;
   font-family: Catamaran;
 }
-#about img {
+#about_img {
   border: 7px solid var(--green_2);
   margin-bottom: 50px;
+  background-image: url(../image/about-bcg.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 250px;
+  position: relative;
+}
+#about_img:hover #img_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(103, 142, 62, 0.5);
 }
 .presentation_text span {
   font-family: Grand_Hotel;
@@ -342,43 +420,57 @@ body > main:nth-child(3) > div:nth-child(1) {
   cursor: pointer;
   letter-spacing: 6px;
   outline: none;
+  transition: opacity 0.3s linear;
 }
 .green_btn:hover {
-  opacity: 0.9;
+  opacity: 0.8;
 }
 /* tablet */
 @media (min-width: 600px) {
   #about {
     padding: 120px 50px;
+    align-items: flex-start;
   }
-  #about img {
-    width: 65%;
+  #about > div:nth-child(2) > section:nth-child(1) {
+    width: 70%;
   }
   #about .green_btn {
     width: 220px;
+  }
+  #about_img {
+    width: 500px;
+    height: 350px;
   }
 }
 
 /* desktop */
 @media (min-width: 1240px) {
   #about {
-    padding: 120px 50px;
+    padding: 120px 70px;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
+
     padding-right: 100px;
+    width: 100%;
   }
-  #about img {
-    width: 700px;
-    height: 500px;
+  #about_img {
+    min-width: 650px;
+    min-height: 450px;
   }
   #about > div {
-    padding: 10px 30px;
-    text-align: left;
+    padding-left: 50px;
   }
   #about .green_btn {
     font-size: 20px;
     width: 200px;
     margin: 0;
+  }
+  .presentation_text {
+    width: 100%;
+    max-height: 480px;
+  }
+  .presentation_text p {
+    width: 100%;
   }
 }
 p {
@@ -493,6 +585,10 @@ div.product:nth-child(2) {
   border-radius: 3%;
   box-shadow: 11px 11px 15px -9px rgba(0, 0, 0, 0.16);
   /* padding-bottom: 50px; */
+  transition: transform 0.2s linear;
+}
+.card:hover {
+  transform: translateY(-1.5%);
 }
 .card > div:first-child {
   width: 100%;

@@ -14,7 +14,7 @@
     <title>Font Awesome</title>
   </head>
   <body>
-    <header class="relative">
+    <header class="relative" id="home">
       <div class="overlay"></div>
 
       <input type="checkbox" id="menu" />
@@ -26,26 +26,29 @@
           <label for="menu">
             <i class="fa-solid fa-times" id="close_menu"></i>
           </label>
-        </div>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Skills</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Products</a></li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#our_services">Services</a></li>
+          <li><a href="#contact_us">Contact US</a></li>
         </ul>
+        </div>
+       
       </nav>
 
       <section id="header_text">
-        <h1>
-          <span>Over one hundred flavors of</span>
+        <span class="fade_in">Over one hundred flavors of</span>
+        <h1 class="fade_in">
           specially crafted tea
         </h1>
-        <button><span>explore</span></button>
+        <button class="fade_in"><span>explore</span></button>
       </section>
     </header>
     <div id="linear"></div>
   <main>
-      <div> <div class="icon_wrapper">
+      <div id="skills"> <div class="icon_wrapper">
         <i class="fa-solid fa-mug-hot"></i>
         <section>
           <h4>Made in US</h4>
@@ -88,22 +91,22 @@
        
     
       <div id="about">
-        <img src="./image/about-bcg.jpeg" alt="about image" />
+        <div id="about_img">
+          <div id="img_overlay"></div>
+        </div>
         <div>
           <section class="presentation_text">
             <h2><span>About our </span>tea station</h2>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum,
               perferendis ipsam animi, beatae repudiandae, eum suscipit
-              necessitatibus eius placeat odio maxime? Iste, veniam? Ullam
-              voluptatem consectetur doloribus aut nulla sint.
+              necessitatibus eius placeat odio maxime? 
             </p>
             <br />
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum,
               perferendis ipsam animi, beatae repudiandae, eum suscipit
-              necessitatibus eius placeat odio maxime? Iste, veniam? Ullam
-              voluptatem consectetur doloribus aut nulla sint.
+              necessitatibus eius placeat odio maxime? 
             </p>
           </section>
           <br />
